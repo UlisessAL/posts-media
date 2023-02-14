@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {addDoc, collection, getFirestore} from "firebase/firestore";
+import {addDoc, collection, getDocs, getFirestore, orderBy, query} from "firebase/firestore";
 import {getAuth} from "firebase/auth";
 import {getStorage} from "firebase/storage";
 
@@ -17,6 +17,20 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const storage = getStorage();
+const postsRef = collection(db, "posts");
+
+export const getPosts = async () => {
+  const q = query(postsRef, orderBy("date", "desc"));
+  const snapshot = await getDocs(q);
+
+  const posts = snapshot.docs.map((e) => {
+    let post = e.data();
+    post.id = e.id;
+
+    return post;
+  });
+  return posts
+}
 
 export const exportOnePost = async (post) => {
   addDoc(collection(db, "posts"), post);

@@ -86,7 +86,7 @@ const NewPost = () => {
                 height="44"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
-                stroke="#2c3e50"
+                stroke="#ffffff"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -105,7 +105,7 @@ const NewPost = () => {
                 height="44"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
-                stroke="#2c3e50"
+                stroke="#ffffff"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -121,6 +121,7 @@ const NewPost = () => {
             type="text"
             placeholder="What are you thinking about?"
             required
+            style={{ overflow: "hidden" }}
           />
           <button>
             <svg
@@ -130,7 +131,7 @@ const NewPost = () => {
               height="44"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
-              stroke="#2c3e50"
+              stroke="#ffffff"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
