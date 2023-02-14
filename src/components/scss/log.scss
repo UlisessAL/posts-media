@@ -48,6 +48,10 @@
                 font-weight: bold;
                 border:none;
                 cursor:pointer;
+
+                &:disabled{
+                    background-color: grey;
+                }
             }
 
             label{

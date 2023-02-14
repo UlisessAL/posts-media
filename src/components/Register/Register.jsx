@@ -2,7 +2,7 @@ import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { db, storage } from "../../services/firebase";
 import { useAuthContext } from "../context/authContext";
 import "../scss/log.scss";
@@ -10,7 +10,11 @@ import "../scss/log.scss";
 const Register = () => {
   const {register} = useAuthContext();
   const [error, setError] = useState(false);
-  const navigate = useNavigate();
+  const [fileChange, setFileChange] = useState(false);
+
+  const handleChangeFile = () => {
+    setFileChange(true);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,7 +67,7 @@ const Register = () => {
             <input type="text" placeholder="Display name" required />
             <input type="email" placeholder="example@email.com" required />
             <input type="password" placeholder="Password must have 8 characters at least" required />
-            <input type="file" style={{ display: "none" }} id="file" />
+            <input type="file" style={{ display: "none" }} id="file" onChange={handleChangeFile}/>
             <label htmlFor="file">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +89,7 @@ const Register = () => {
               </svg>
               <span>Add an avatar</span>
             </label>
-            <button>Sign up</button>
+            <button  disabled={!fileChange}>Sign up</button>
             {error && <span>Something went wrong</span>}
           </form>
           <p>
